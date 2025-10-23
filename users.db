@@ -1,0 +1,41 @@
+SQLite format 3
+
+  CREATE TABLE user_preferences (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                user_id INTEGER UNIQUE,
+                preferences_data TEXT,
+                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                FOREIGN KEY (user_id) REFERENCES users (id)
+            )?
+CREATE TABLE interview_sessions (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                user_id INTEGER,
+                interview_type TEXT NOT NULL,
+                role TEXT NOT NULL,
+                language TEXT DEFAULT 'english',
+                difficulty TEXT DEFAULT 'intermediate',
+                session_data TEXT,
+                final_report TEXT,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                completed_at TIMESTAMP,
+                status TEXT DEFAULT 'active',
+                FOREIGN KEY (user_id) REFERENCES users (id)
+            )
+  CREATE TABLE learning_progress (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                user_id INTEGER,
+                learning_goal TEXT NOT NULL,
+                progress_data TEXT,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                status TEXT DEFAULT 'active',
+                FOREIGN KEY (user_id) REFERENCES users (id)
+            )�4''�'tableuser_sessionsuser_sessionsCREATE TABLE user_sessions (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                user_id INTEGER,
+                session_token TEXT UNIQUE NOT NULL,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                expires_at TIMESTAMP NOT NULL,
+                is_active BOOLEAN DEFAULT 1,
+                FOREIGN KEY (user_id) REFERENCES users (id)
+            )9M'
